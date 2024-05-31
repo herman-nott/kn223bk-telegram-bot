@@ -1,13 +1,15 @@
-import os
-import dotenv
+from environs import Env
 
 from aiogram import Bot, Dispatcher
 from aiogram.filters import Command
 from aiogram.types import Message, BotCommand
 
-dotenv.load_dotenv()
+env = Env()
+env.read_env()
 
-bot = Bot(token=os.getenv("BOT_TOKEN"))
+# bot_token = env("BOT_TOKEN")
+
+bot = Bot(token=env("BOT_TOKEN"))
 dp = Dispatcher()
 
 @dp.startup.register
